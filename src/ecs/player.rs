@@ -40,6 +40,14 @@ impl MainPlayer {
         return 0 - PLAYER_WIDTH as i32;
     }
 
+    pub fn move_to(&mut self, axis: &'static str, dir: i32) {
+        match axis {
+            "x" => self.move_x(dir),
+            "y" => self.move_y(dir),
+            _ => unimplemented!("not implemented yet"),
+        }
+    }
+
     pub fn move_x(&mut self, new_pos: i32) {
         if self.x >= 0 - PLAYER_WIDTH as i32 && self.x <= (wasm4::SCREEN_SIZE + PLAYER_WIDTH) as i32
         {

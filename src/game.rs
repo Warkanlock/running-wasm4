@@ -1,6 +1,6 @@
 use crate::{
     ecs::player::MainPlayer,
-    wasm4::{self, trace},
+    wasm4::{self},
 };
 
 pub struct MainGame {
@@ -27,16 +27,16 @@ impl MainGame {
         let gamepad = unsafe { *wasm4::GAMEPAD1 };
 
         if gamepad & wasm4::BUTTON_LEFT != 0 {
-            self.player.move_x(-self.player.speed);
+            self.player.move_to("x", -self.player.speed);
         }
         if gamepad & wasm4::BUTTON_RIGHT != 0 {
-            self.player.move_x(self.player.speed);
+            self.player.move_to("x", self.player.speed);
         }
         if gamepad & wasm4::BUTTON_UP != 0 {
-            self.player.move_y(-self.player.speed);
+            self.player.move_to("y", -self.player.speed);
         }
         if gamepad & wasm4::BUTTON_DOWN != 0 {
-            self.player.move_y(self.player.speed);
+            self.player.move_to("y", self.player.speed);
         }
     }
 }
